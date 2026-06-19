@@ -1,16 +1,84 @@
-# React + Vite
+# Frontend Libro de Clases Digital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend del sistema de libro de clases digital del Colegio Bernardo O'Higgins.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18
+- Bootstrap 5
+- React Router v6
+- Axios
+- Vite
 
-## React Compiler
+## Estructura
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```text
+src/
+	components/
+		ApiFeedback.jsx
+		AppNavbar.jsx
+		LoadingSpinner.jsx
+	hooks/
+		useApiState.js
+	models/
+		comunicacionesModels.js
+	pages/
+		ApoderadosPage.jsx
+		MensajesPage.jsx
+		NotificacionesPage.jsx
+	services/
+		apoderadoService.js
+		mensajeService.js
+		notificacionService.js
+		httpClient.js
+```
 
-## Expanding the ESLint configuration
+## Variables de entorno
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Copiar `.env.example` a `.env`.
+
+```env
+REACT_APP_API_COMUNICACIONES=http://localhost:8083
+```
+
+## Instalacion y ejecucion
+
+```bash
+npm install
+npm start
+```
+
+Alternativa equivalente en Vite:
+
+```bash
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Funcionalidades implementadas
+
+- `/apoderados`
+	- CRUD completo (crear, listar, editar, eliminar)
+	- Validaciones: rut, nombre, apellido, telefono, parentesco, correo valido, estudianteId numerico
+	- Filtros por correo y estudianteId
+- `/mensajes`
+	- Bandeja con filtros por remitente y destinatario
+	- Formulario con asunto, contenido, remitente, destinatario, tipoDestinatario, prioridad, fechaEnvio opcional
+	- Indicador visual de no leidos y accion de marcar como leido
+- `/notificaciones`
+	- Listado de notificaciones
+	- Formulario con titulo, descripcion, destinatario, tipo, fechaCreacion opcional
+	- Indicador visual de no leidas y accion de marcar como leida
+
+## Manejo de errores API
+
+El cliente HTTP interpreta y muestra mensajes claros para:
+
+- 400 (validaciones)
+- 404 (recurso no encontrado)
+- errores de conectividad
