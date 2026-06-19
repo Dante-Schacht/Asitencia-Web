@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const API_COMUNICACIONES_URL =
-  import.meta.env.REACT_APP_API_COMUNICACIONES ||
-  import.meta.env.VITE_API_COMUNICACIONES ||
-  'http://localhost:8083';
+  import.meta.env.VITE_API_COMUNICACIONES || import.meta.env.REACT_APP_API_COMUNICACIONES || '';
+
+const normalizedBaseUrl = API_COMUNICACIONES_URL.replace(/\/$/, '');
 
 export const comunicacionesClient = axios.create({
-  baseURL: API_COMUNICACIONES_URL,
+  ...(normalizedBaseUrl ? { baseURL: normalizedBaseUrl } : {}),
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',

@@ -35,11 +35,13 @@ src/
 
 ## Variables de entorno
 
-Copiar `.env.example` a `.env`.
+Copiar `.env.example` a `.env` solo si necesitas apuntar a una API fuera del proxy local de Vite.
 
 ```env
-REACT_APP_API_COMUNICACIONES=http://localhost:8083
+VITE_API_COMUNICACIONES=http://localhost:8087
 ```
+
+Si no defines esta variable, el frontend usa rutas relativas `/api` y aprovecha el proxy configurado en Vite.
 
 ## Instalacion y ejecucion
 
